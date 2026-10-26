@@ -13,6 +13,11 @@ AI-assisted iterate log. **Human owns metrics, cut list, and EV convention** (`d
 7. **Streamlit** — Single-page console: controls, presets, recommendation + ΔEV, Plotly bars, caveats, sidebar metrics.
 8. **Polish** — Interview README, decisions (leaky rejects), demo screenshots/GIF to Project media store.
 
+## Review polish (Review Agent 3)
+
+- **P0:** removed `class_weight='balanced'` from logistic training — FG holdout Brier ~0.22→~0.11; mid-range `p_make` no longer ~35% on 47-yard kicks.
+- Added FG empirical-agreement guardrail + pytest; `xyac_*` / `fumble_*` prefix bans; Streamlit preset keys; sidebar calibration thumbnail.
+
 ## AI role
 
 - Accelerated boilerplate (download retries, Streamlit layout CSS, test stubs).

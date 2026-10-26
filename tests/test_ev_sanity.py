@@ -54,3 +54,14 @@ def test_s1_not_go_with_huge_delta(engine):
     results = {r["id"]: r for r in run_sanity_suite(engine)}
     r = results["S1"]
     assert not (r["recommendation"] == "go" and r["delta_ev"] > 1.5)
+
+
+def test_fg_make_near_empirical_in_range(engine):
+    """FG logistic must stay near empirical make rates in typical kick range (P0)."""
+    from nfl_ev.ev import GameState
+
+    # Opp ~25 → ~42-yard kick; thick empirical cells exist.
+    r = engine.score(GameState(yardline_100=25, ydstogo=5, qtr=2, game_seconds_remaining=1800))
+    assert r.sample_n_fg >= 30
+    assert abs(r.p_make - r.p_make_baseline) < 0.20
+    assert r.p_make > 0.55  # must not collapse toward coin-flip / balanced-weight failure

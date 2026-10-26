@@ -43,7 +43,14 @@ def _align_columns(X: pd.DataFrame, columns: list[str]) -> pd.DataFrame:
     return out[columns]
 
 
-def make_logit_pipeline() -> Pipeline:
+def make_logit_pipeline(*, class_weight: str | None = None) -> Pipeline:
+    """
+    Logistic with optional class_weight.
+
+    Default is None: calibrated probabilities matter for EV. Using
+    class_weight='balanced' on FG (~86% make) collapsed p_make toward 0.5
+    and systematically undervalued field goals in the product EV.
+    """
     return Pipeline(
         [
             ("scaler", StandardScaler()),
@@ -51,7 +58,7 @@ def make_logit_pipeline() -> Pipeline:
                 "clf",
                 LogisticRegression(
                     max_iter=2000,
-                    class_weight="balanced",
+                    class_weight=class_weight,
                     solver="lbfgs",
                 ),
             ),
@@ -73,6 +80,8 @@ def train_binary_logit(
     test_df: pd.DataFrame,
     label_fn,
     name: str,
+    *,
+    class_weight: str | None = None,
 ) -> dict[str, Any]:
     X_tr, y_tr, _ = _prepare_xy(train_df, label_fn)
     X_te, y_te, te_idx = _prepare_xy(test_df, label_fn)
@@ -80,7 +89,7 @@ def train_binary_logit(
     columns = list(X_tr.columns)
     X_te = _align_columns(X_te, columns)
 
-    pipe = make_logit_pipeline()
+    pipe = make_logit_pipeline(class_weight=class_weight)
     pipe.fit(X_tr[columns], y_tr)
 
     metrics: dict[str, Any] = {"name": name, "n_train": int(len(y_tr)), "n_test": int(len(y_te))}

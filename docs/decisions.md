@@ -47,6 +47,8 @@ At decision time: **`kick_distance ≈ yardline_100 + 17`** (LOS to uprights rul
 
 **Long-kick guardrail:** attempts with proxy distance ≥65 / ≥70 yards are hard-capped to ~8% / ~1% make probability. Sparse 60+ yard empirical cells back off toward near-zero — **not** the league-wide make rate (~86%), which is dominated by short kicks and would wrongly recommend FG from own territory.
 
+**FG logistic calibration (Review fix):** do **not** train FG (or convert) with `class_weight='balanced'`. On ~86% make rate that setting collapsed `p_make` toward ~0.5 and systematically undervalued FG in the EV console. Product also blends toward the empirical distance table when a thick cell’s model p is >15pp low.
+
 ## 5. What AI suggested that was rejected
 
 | Suggestion | Rejected because |

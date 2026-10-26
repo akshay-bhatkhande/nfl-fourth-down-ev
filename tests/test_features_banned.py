@@ -11,7 +11,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from nfl_ev.features import BANNED_FEATURES, assert_no_banned, feature_matrix
+from nfl_ev.features import BANNED_FEATURES, BANNED_PREFIXES, assert_no_banned, feature_matrix
 
 
 def test_banned_list_nonempty():
@@ -19,6 +19,9 @@ def test_banned_list_nonempty():
     assert "wp" in BANNED_FEATURES
     assert "first_down" in BANNED_FEATURES
     assert "fg_prob" in BANNED_FEATURES
+    assert "xyac_epa" in BANNED_FEATURES
+    assert "xyac_" in BANNED_PREFIXES
+    assert "fumble_" in BANNED_PREFIXES
 
 
 def test_feature_matrix_excludes_banned():
@@ -49,3 +52,8 @@ def test_feature_matrix_excludes_banned():
 def test_assert_no_banned_raises():
     with pytest.raises(ValueError, match="Banned"):
         assert_no_banned(["yardline_100", "epa"])
+
+
+def test_assert_no_banned_xyac_prefix():
+    with pytest.raises(ValueError, match="xyac"):
+        assert_no_banned(["yardline_100", "xyac_mean_yardage"])
