@@ -1,0 +1,316 @@
+{
+  "global_p": 0.5371150729335494,
+  "by_ydstogo": {
+    "1": 0.686530612244898,
+    "2": 0.5777310924369747,
+    "3-5": 0.49416909620991256,
+    "6+": 0.28939828080229224
+  },
+  "cells": {
+    "0-9|1": {
+      "n": 226,
+      "success": 138,
+      "p": 0.6106194690265486,
+      "backed_off": false,
+      "yardline_bucket": "0-9",
+      "ydstogo_bucket": "1"
+    },
+    "0-9|2": {
+      "n": 98,
+      "success": 51,
+      "p": 0.5204081632653061,
+      "backed_off": false,
+      "yardline_bucket": "0-9",
+      "ydstogo_bucket": "2"
+    },
+    "0-9|3-5": {
+      "n": 98,
+      "success": 40,
+      "p": 0.40816326530612246,
+      "backed_off": false,
+      "yardline_bucket": "0-9",
+      "ydstogo_bucket": "3-5"
+    },
+    "0-9|6+": {
+      "n": 27,
+      "success": 9,
+      "p": 0.28939828080229224,
+      "backed_off": true,
+      "yardline_bucket": "0-9",
+      "ydstogo_bucket": "6+"
+    },
+    "10-19|1": {
+      "n": 132,
+      "success": 96,
+      "p": 0.7272727272727273,
+      "backed_off": false,
+      "yardline_bucket": "10-19",
+      "ydstogo_bucket": "1"
+    },
+    "10-19|2": {
+      "n": 39,
+      "success": 29,
+      "p": 0.7435897435897436,
+      "backed_off": false,
+      "yardline_bucket": "10-19",
+      "ydstogo_bucket": "2"
+    },
+    "10-19|3-5": {
+      "n": 56,
+      "success": 31,
+      "p": 0.5535714285714286,
+      "backed_off": false,
+      "yardline_bucket": "10-19",
+      "ydstogo_bucket": "3-5"
+    },
+    "10-19|6+": {
+      "n": 57,
+      "success": 14,
+      "p": 0.24561403508771928,
+      "backed_off": false,
+      "yardline_bucket": "10-19",
+      "ydstogo_bucket": "6+"
+    },
+    "20-29|1": {
+      "n": 138,
+      "success": 96,
+      "p": 0.6956521739130435,
+      "backed_off": false,
+      "yardline_bucket": "20-29",
+      "ydstogo_bucket": "1"
+    },
+    "20-29|2": {
+      "n": 65,
+      "success": 40,
+      "p": 0.6153846153846154,
+      "backed_off": false,
+      "yardline_bucket": "20-29",
+      "ydstogo_bucket": "2"
+    },
+    "20-29|3-5": {
+      "n": 65,
+      "success": 34,
+      "p": 0.5230769230769231,
+      "backed_off": false,
+      "yardline_bucket": "20-29",
+      "ydstogo_bucket": "3-5"
+    },
+    "20-29|6+": {
+      "n": 82,
+      "success": 22,
+      "p": 0.2682926829268293,
+      "backed_off": false,
+      "yardline_bucket": "20-29",
+      "ydstogo_bucket": "6+"
+    },
+    "30-39|1": {
+      "n": 196,
+      "success": 135,
+      "p": 0.6887755102040817,
+      "backed_off": false,
+      "yardline_bucket": "30-39",
+      "ydstogo_bucket": "1"
+    },
+    "30-39|2": {
+      "n": 74,
+      "success": 38,
+      "p": 0.5135135135135135,
+      "backed_off": false,
+      "yardline_bucket": "30-39",
+      "ydstogo_bucket": "2"
+    },
+    "30-39|3-5": {
+      "n": 164,
+      "success": 78,
+      "p": 0.47560975609756095,
+      "backed_off": false,
+      "yardline_bucket": "30-39",
+      "ydstogo_bucket": "3-5"
+    },
+    "30-39|6+": {
+      "n": 105,
+      "success": 29,
+      "p": 0.2761904761904762,
+      "backed_off": false,
+      "yardline_bucket": "30-39",
+      "ydstogo_bucket": "6+"
+    },
+    "40-49|1": {
+      "n": 165,
+      "success": 120,
+      "p": 0.7272727272727273,
+      "backed_off": false,
+      "yardline_bucket": "40-49",
+      "ydstogo_bucket": "1"
+    },
+    "40-49|2": {
+      "n": 98,
+      "success": 63,
+      "p": 0.6428571428571429,
+      "backed_off": false,
+      "yardline_bucket": "40-49",
+      "ydstogo_bucket": "2"
+    },
+    "40-49|3-5": {
+      "n": 151,
+      "success": 76,
+      "p": 0.5033112582781457,
+      "backed_off": false,
+      "yardline_bucket": "40-49",
+      "ydstogo_bucket": "3-5"
+    },
+    "40-49|6+": {
+      "n": 118,
+      "success": 38,
+      "p": 0.3220338983050847,
+      "backed_off": false,
+      "yardline_bucket": "40-49",
+      "ydstogo_bucket": "6+"
+    },
+    "50-59|1": {
+      "n": 167,
+      "success": 118,
+      "p": 0.7065868263473054,
+      "backed_off": false,
+      "yardline_bucket": "50-59",
+      "ydstogo_bucket": "1"
+    },
+    "50-59|2": {
+      "n": 49,
+      "success": 27,
+      "p": 0.5510204081632653,
+      "backed_off": false,
+      "yardline_bucket": "50-59",
+      "ydstogo_bucket": "2"
+    },
+    "50-59|3-5": {
+      "n": 62,
+      "success": 33,
+      "p": 0.532258064516129,
+      "backed_off": false,
+      "yardline_bucket": "50-59",
+      "ydstogo_bucket": "3-5"
+    },
+    "50-59|6+": {
+      "n": 108,
+      "success": 29,
+      "p": 0.26851851851851855,
+      "backed_off": false,
+      "yardline_bucket": "50-59",
+      "ydstogo_bucket": "6+"
+    },
+    "60-69|1": {
+      "n": 149,
+      "success": 101,
+      "p": 0.6778523489932886,
+      "backed_off": false,
+      "yardline_bucket": "60-69",
+      "ydstogo_bucket": "1"
+    },
+    "60-69|2": {
+      "n": 39,
+      "success": 18,
+      "p": 0.46153846153846156,
+      "backed_off": false,
+      "yardline_bucket": "60-69",
+      "ydstogo_bucket": "2"
+    },
+    "60-69|3-5": {
+      "n": 52,
+      "success": 25,
+      "p": 0.4807692307692308,
+      "backed_off": false,
+      "yardline_bucket": "60-69",
+      "ydstogo_bucket": "3-5"
+    },
+    "60-69|6+": {
+      "n": 86,
+      "success": 27,
+      "p": 0.313953488372093,
+      "backed_off": false,
+      "yardline_bucket": "60-69",
+      "ydstogo_bucket": "6+"
+    },
+    "70-79|1": {
+      "n": 39,
+      "success": 27,
+      "p": 0.6923076923076923,
+      "backed_off": false,
+      "yardline_bucket": "70-79",
+      "ydstogo_bucket": "1"
+    },
+    "70-79|2": {
+      "n": 10,
+      "success": 6,
+      "p": 0.5777310924369747,
+      "backed_off": true,
+      "yardline_bucket": "70-79",
+      "ydstogo_bucket": "2"
+    },
+    "70-79|3-5": {
+      "n": 29,
+      "success": 18,
+      "p": 0.49416909620991256,
+      "backed_off": true,
+      "yardline_bucket": "70-79",
+      "ydstogo_bucket": "3-5"
+    },
+    "70-79|6+": {
+      "n": 70,
+      "success": 20,
+      "p": 0.2857142857142857,
+      "backed_off": false,
+      "yardline_bucket": "70-79",
+      "ydstogo_bucket": "6+"
+    },
+    "80-89|1": {
+      "n": 13,
+      "success": 10,
+      "p": 0.686530612244898,
+      "backed_off": true,
+      "yardline_bucket": "80-89",
+      "ydstogo_bucket": "1"
+    },
+    "80-89|2": {
+      "n": 4,
+      "success": 3,
+      "p": 0.5777310924369747,
+      "backed_off": true,
+      "yardline_bucket": "80-89",
+      "ydstogo_bucket": "2"
+    },
+    "80-89|3-5": {
+      "n": 7,
+      "success": 4,
+      "p": 0.49416909620991256,
+      "backed_off": true,
+      "yardline_bucket": "80-89",
+      "ydstogo_bucket": "3-5"
+    },
+    "80-89|6+": {
+      "n": 33,
+      "success": 10,
+      "p": 0.30303030303030304,
+      "backed_off": false,
+      "yardline_bucket": "80-89",
+      "ydstogo_bucket": "6+"
+    },
+    "90-100|3-5": {
+      "n": 2,
+      "success": 0,
+      "p": 0.49416909620991256,
+      "backed_off": true,
+      "yardline_bucket": "90-100",
+      "ydstogo_bucket": "3-5"
+    },
+    "90-100|6+": {
+      "n": 12,
+      "success": 4,
+      "p": 0.28939828080229224,
+      "backed_off": true,
+      "yardline_bucket": "90-100",
+      "ydstogo_bucket": "6+"
+    }
+  },
+  "min_n": 30
+}

@@ -1,0 +1,54 @@
+{
+  "global_ep_after": -0.3624900279978316,
+  "cells": {
+    "20-29": {
+      "n": 1,
+      "mean_ep_after": -0.8598144559737936,
+      "mean_opp_yl": 69.0,
+      "backed_off": true
+    },
+    "30-39": {
+      "n": 100,
+      "mean_ep_after": 0.591554550755273,
+      "mean_opp_yl": 93.19,
+      "backed_off": false
+    },
+    "40-49": {
+      "n": 1077,
+      "mean_ep_after": 0.5080150070674208,
+      "mean_opp_yl": 91.47353760445682,
+      "backed_off": false
+    },
+    "50-59": {
+      "n": 1636,
+      "mean_ep_after": 0.2786664283015031,
+      "mean_opp_yl": 87.22677261613691,
+      "backed_off": false
+    },
+    "60-69": {
+      "n": 2187,
+      "mean_ep_after": -0.15002287805143139,
+      "mean_opp_yl": 79.91449474165523,
+      "backed_off": false
+    },
+    "70-79": {
+      "n": 2123,
+      "mean_ep_after": -0.7618465769868531,
+      "mean_opp_yl": 70.05416862929816,
+      "backed_off": false
+    },
+    "80-89": {
+      "n": 1108,
+      "mean_ep_after": -1.3689250226850187,
+      "mean_opp_yl": 60.22111913357401,
+      "backed_off": false
+    },
+    "90-100": {
+      "n": 355,
+      "mean_ep_after": -2.0049541069668555,
+      "mean_opp_yl": 49.35774647887324,
+      "backed_off": false
+    }
+  },
+  "min_n": 30
+}

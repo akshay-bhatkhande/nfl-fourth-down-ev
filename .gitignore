@@ -1,0 +1,24 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.DS_Store
+.streamlit/secrets.toml
+
+# Large local data (download via scripts)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Keep small JSON / joblib / calibration figs; ignore large dumps
+artifacts/*.pkl
+artifacts/*.parquet
+
+# Local notebooks / IDE
+.ipynb_checkpoints/
+.idea/
+.vscode/
