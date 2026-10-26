@@ -179,6 +179,10 @@ def main() -> None:
                 "emp_vs_model_mae": metrics.get("empirical_vs_model_mae_convert"),
             }
         )
+        cal_path = art / "calibration_convert.png"
+        if cal_path.exists():
+            st.caption("Convert calibration (holdout)")
+            st.image(str(cal_path), use_container_width=True)
         use_model = st.toggle("Use logistic model (off = empirical only)", value=True)
         st.markdown("---")
         st.markdown(
@@ -187,18 +191,37 @@ def main() -> None:
             unsafe_allow_html=True,
         )
 
-    # Defaults: own 35, 4th & 2, tied, Q2 mid
-    if "preset_state" not in st.session_state:
-        st.session_state.preset_state = None
+    # Defaults: own 35, 4th & 2, tied, Q2 mid — keyed widgets so presets apply reliably.
+    _default = GameState()
+    _init = {
+        "yl": int(_default.yardline_100),
+        "ytg": int(_default.ydstogo),
+        "score_diff": int(_default.score_differential),
+        "qtr": int(_default.qtr),
+        "gsr": int(_default.game_seconds_remaining),
+        "roof": _default.roof,
+        "off_to": int(_default.posteam_timeouts_remaining),
+        "def_to": int(_default.defteam_timeouts_remaining),
+    }
+    for k, v in _init.items():
+        if k not in st.session_state:
+            st.session_state[k] = v
+
+    def _apply_preset(gs: GameState) -> None:
+        st.session_state["yl"] = int(gs.yardline_100)
+        st.session_state["ytg"] = int(gs.ydstogo)
+        st.session_state["score_diff"] = int(gs.score_differential)
+        st.session_state["qtr"] = int(gs.qtr)
+        st.session_state["gsr"] = int(gs.game_seconds_remaining)
+        st.session_state["roof"] = gs.roof if gs.roof in ["outdoors", "dome", "open", "closed"] else "outdoors"
+        st.session_state["off_to"] = int(gs.posteam_timeouts_remaining)
+        st.session_state["def_to"] = int(gs.defteam_timeouts_remaining)
 
     st.markdown("#### Extreme-situation presets")
     cols = st.columns(len(SANITY_CASES))
     for col, case in zip(cols, SANITY_CASES):
         if col.button(case.id, help=case.label, use_container_width=True):
-            st.session_state.preset_state = case.state
-
-    preset = st.session_state.preset_state
-    defaults = preset or GameState()
+            _apply_preset(case.state)
 
     c1, c2, c3 = st.columns(3)
     with c1:
@@ -206,38 +229,32 @@ def main() -> None:
             "Yards to opponent end zone (`yardline_100`)",
             1,
             99,
-            int(defaults.yardline_100),
+            key="yl",
             help="Own 35 ≈ 65; opponent 1 ≈ 1.",
         )
-        ydstogo = st.slider("Yards to go", 1, 20, int(defaults.ydstogo))
+        ydstogo = st.slider("Yards to go", 1, 20, key="ytg")
         score_differential = st.number_input(
             "Score differential (posteam − defteam)",
             -28,
             28,
-            int(defaults.score_differential),
+            key="score_diff",
         )
     with c2:
-        qtr = st.selectbox("Quarter", [1, 2, 3, 4], index=int(defaults.qtr) - 1)
+        qtr = st.selectbox("Quarter", [1, 2, 3, 4], key="qtr")
         game_seconds_remaining = st.slider(
             "Game seconds remaining",
             0,
             3600,
-            int(defaults.game_seconds_remaining),
+            key="gsr",
         )
         roof = st.selectbox(
             "Roof",
             ["outdoors", "dome", "open", "closed"],
-            index=["outdoors", "dome", "open", "closed"].index(
-                defaults.roof if defaults.roof in ["outdoors", "dome", "open", "closed"] else "outdoors"
-            ),
+            key="roof",
         )
     with c3:
-        posteam_to = st.slider(
-            "Offense timeouts", 0, 3, int(defaults.posteam_timeouts_remaining)
-        )
-        defteam_to = st.slider(
-            "Defense timeouts", 0, 3, int(defaults.defteam_timeouts_remaining)
-        )
+        posteam_to = st.slider("Offense timeouts", 0, 3, key="off_to")
+        defteam_to = st.slider("Defense timeouts", 0, 3, key="def_to")
         st.caption("Goal-to-go is inferred when yardline ≤ yards to go.")
 
     state = GameState(

@@ -51,10 +51,18 @@ BANNED_FEATURES: list[str] = [
     "penalty",
     "cp",
     "cpoe",
+    "xyac_epa",
+    "xyac_mean_yardage",
+    "xyac_median_yardage",
+    "xyac_success",
+    "xyac_fd",
     "fg_prob",
     "td_prob",
     "safety_prob",
 ]
+
+# Prefix families treated as banned (post-play / model-on-model).
+BANNED_PREFIXES: tuple[str, ...] = ("xyac_", "fumble_")
 
 # Labels / filters (not model features).
 LABEL_COLUMNS: list[str] = [
@@ -76,10 +84,15 @@ MIN_CELL_N = 30
 
 
 def assert_no_banned(columns: Iterable[str]) -> None:
-    """Raise if any banned column appears in a feature matrix column set."""
-    banned_hit = sorted(set(columns) & set(BANNED_FEATURES))
-    if banned_hit:
-        raise ValueError(f"Banned leakage columns in feature matrix: {banned_hit}")
+    """Raise if any banned column or banned prefix appears in a feature matrix."""
+    cols = list(columns)
+    banned_hit = sorted(set(cols) & set(BANNED_FEATURES))
+    prefix_hit = sorted(
+        {c for c in cols if any(c.startswith(p) or c == p.rstrip("_") for p in BANNED_PREFIXES)}
+    )
+    hits = sorted(set(banned_hit) | set(prefix_hit))
+    if hits:
+        raise ValueError(f"Banned leakage columns in feature matrix: {hits}")
 
 
 def feature_matrix(

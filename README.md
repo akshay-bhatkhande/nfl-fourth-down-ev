@@ -48,15 +48,15 @@ Committed `artifacts/` let you open the Streamlit app and run sanity tests witho
 
 | Model | Log-loss | Brier | Notes |
 | --- | --- | --- | --- |
-| Convert (logistic) | **0.653** | **0.229** | Emp. vs model bucket MAE ≈ **0.055** |
-| FG make (logistic) | **0.633** | **0.224** | Long kicks capped in product EV |
+| Convert (logistic) | **0.649** | **0.228** | Emp. vs model bucket MAE ≈ **0.056** |
+| FG make (logistic) | **0.359** | **0.110** | No `class_weight='balanced'` (keeps probs calibrated); long kicks capped in product EV |
 
 Calibration (reliability diagrams written by `train_models.py`):
 
 ![Convert calibration](artifacts/calibration_convert.png)
 ![FG calibration](artifacts/calibration_fg.png)
 
-**Baseline globals (train seasons):** convert ≈ see `artifacts/metrics.json` / conversion table; FG make league rate ≈ 0.86 on attempted kicks (dominated by shorter tries).
+**Baseline globals (train seasons):** convert ≈ **0.54**; FG make league rate ≈ **0.86** on attempted kicks (dominated by shorter tries). See `artifacts/metrics.json`.
 
 ## Where it fails (error slices)
 
@@ -64,7 +64,7 @@ Holdout convert slices (yardline thirds × ydstogo) show the usual sports-analyt
 
 1. **Short yardage is better calibrated than long** — midfield 4th & 6+ is sparse and noisy; Brier rises when observed conversion is rare.
 2. **Opponent-territory long-yardage go attempts** are the worst convert slice (small N, model under-predicts opportunistic conversions).
-3. **FG logistic under-predicts make rate on “own/mid” attempts that are actually short kicks** after the distance transform — the empirical distance table is the safer display baseline for long attempts; the app blends toward it when cells are thin.
+3. **Long / sparse FG cells** still need the empirical distance table + hard caps (≥65 / ≥70 yards). Mid-range FG logistic is now calibrated (Review fixed a `class_weight='balanced'` collapse); the app still blends toward empirical when a thick cell’s model p is badly low.
 
 Sanity suite **S1–S5** (own-territory punt, goal-line go, short-yardage competitive, long-yardage anti-go, late trailing go vs punt) is enforced in `tests/test_ev_sanity.py`.
 

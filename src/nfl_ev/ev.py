@@ -96,6 +96,10 @@ class EvEngine:
                 p_conv = 0.5 * p_conv + 0.5 * p_conv_b
             if back_fg or n_fg < MIN_CELL_N:
                 p_make = 0.5 * p_make + 0.5 * p_make_b
+            # Guardrail: never let FG logistic drift far below a thick empirical
+            # distance cell (historical failure mode when class_weight=balanced).
+            if n_fg >= MIN_CELL_N and not back_fg and p_make + 0.15 < p_make_b:
+                p_make = 0.5 * p_make + 0.5 * p_make_b
             # Model was not trained on absurd distances — hard-cap long FG probs.
             if kick_dist >= 70:
                 p_make = min(p_make, 0.01)
